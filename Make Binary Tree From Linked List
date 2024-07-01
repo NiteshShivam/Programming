@@ -1,0 +1,20 @@
+
+def convert(head):
+    temp = head
+    result = []
+    while temp:
+        result.append(temp.data)
+        temp =temp.next
+    i = 0
+    T = Tree(result[i])
+    check = T
+    length = len(result)
+    def solve(T,i):
+        if (2*i+1)<length:
+            T.left = Tree(result[2*i+1])
+            solve(T.left,2*i+1)
+        if (2*i+2)<length:
+            T.right= Tree(result[2*i+2])
+            solve(T.right,2*i+2)
+    solve(T,i)
+    return check
