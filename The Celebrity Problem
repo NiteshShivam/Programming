@@ -1,0 +1,51 @@
+#User function Template for python3
+
+class Solution:
+    
+    #Function to find if there is a celebrity in the party or not.
+    def celebrity(self, M, n):
+        # code here 
+        
+        result = [0]*n
+        for i in range(n):
+            for j in range(n):
+                if M[i][j]==1:
+                    result[i]+=1
+        total = 0
+        aamirKhan = -1
+        for i in range(n):
+            if result[i]==0:
+                total+=1
+                aamirKhan = i
+        if total==1:
+            for i in range(n):
+                if i!=aamirKhan and M[i][aamirKhan]!=1:
+                    return -1
+            return aamirKhan
+                    
+        return -1
+            
+                
+                
+Approach 2:
+
+#User function Template for python3
+
+class Solution:
+    
+    #Function to find if there is a celebrity in the party or not.
+    def celebrity(self, M, n):
+        result = -1
+        count =0
+        for i in range(n):
+            if M[i].count(1)==0:
+                result = i
+                count+=1
+        #print(count)
+        if count==1:
+            for i in range(n):
+                if i!=result and M[i][result]!=1:
+                    return -1
+            return result
+        return -1
+
