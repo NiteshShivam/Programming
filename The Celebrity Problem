@@ -49,3 +49,32 @@ class Solution:
             return result
         return -1
 
+Approach 3: using stack
+
+#User function Template for python3
+from collections import deque
+class Solution:
+    
+    
+    #Function to find if there is a celebrity in the party or not.
+    def celebrity(self, M, n):
+        stack = deque()
+        for i in range(n):
+            stack.append(i)
+        while len(stack)>1:
+            first = stack.pop()
+            second = stack.pop()
+            if M[first][second]==1 and M[second][first]==0:
+                stack.append(second)
+            elif M[second][first]==1 and M[first][second]==0:
+                stack.append(first)
+        if not stack:
+            return -1
+        aamir = stack.pop()
+        #print(aamir)
+        for i in range(n):
+            if i!=aamir and M[i][aamir]!=1:
+                return -1
+            if M[aamir][i]==1:
+                return -1
+        return aamir
