@@ -23,3 +23,29 @@ class Solution:
         #print(dp)
         return dp[m][n]
 
+Approach 2: 
+class Solution:
+    def __init__(self):
+        self.n = 0
+        self.m = 0
+        self.dp = None
+    def solve(self,i,j,str1,str2):
+        if i>=self.n or j>=self.m:
+            return 0
+        if self.dp[i][j]!=-1:
+            return self.dp[i][j]
+        if str1[i]==str2[j]:
+            self.dp[i][j]=1+self.solve(i+1,j+1,str1,str2)
+            return self.dp[i][j]
+        else:
+            self.dp[i][j]= max(self.solve(i+1,j,str1,str2),self.solve(i,j+1,str1,str2))
+            return self.dp[i][j]
+    #Function to find the length of longest common subsequence in two strings.
+    def lcs(self, n, m, str1, str2):
+        
+        # code here
+        self.dp = [[-1]*(1001) for _ in range(1001)]
+        self.n = n
+        self.m = m
+        return self.solve(0,0,str1,str2)
+
