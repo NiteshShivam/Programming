@@ -1,0 +1,25 @@
+Given two strings str1 & str 2 of length n & m respectively, return the length of their 
+longest common subsequence. If there is no common subsequence then, return 0. 
+
+A subsequence is a sequence that can be derived from the given string by deleting 
+some or no elements without changing the order of the remaining elements.
+For example, "abe" is a subsequence of "abcde".
+
+
+
+
+class Solution:
+    
+    #Function to find the length of longest common subsequence in two strings.
+    def lcs(self, n, m, str1, str2):
+        
+        dp = [[0]*(n+1) for _ in range(m+1)]
+        for i in range(m):
+            for j in range(n):
+                if str2[i]==str1[j]:
+                    dp[i+1][j+1]=1 + dp[i][j]
+                else:
+                    dp[i+1][j+1]=max(dp[i][j+1],dp[i+1][j])
+        #print(dp)
+        return dp[m][n]
+
