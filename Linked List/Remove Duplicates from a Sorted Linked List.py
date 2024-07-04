@@ -1,9 +1,9 @@
-Given a singly linked list consisting of N nodes. 
+'''Given a singly linked list consisting of N nodes. 
 The task is to remove duplicates (nodes with duplicate values) from the given list (if exists).
 Note: Try not to use extra space. The nodes are arranged in a sorted way.
+'''
 
-
-Appraoch : 
+#Appraoch : 
 def removeDuplicates(head):
     #code here
     temp = head
