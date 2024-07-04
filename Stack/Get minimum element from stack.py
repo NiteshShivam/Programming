@@ -1,6 +1,6 @@
-You are given N operations and your task is to Implement a Stack in which you can get a minimum element in O(1) time.
+#You are given N operations and your task is to Implement a Stack in which you can get a minimum element in O(1) time.
 
-Approach : 
+#Approach : 
 class stack:
     def __init__(self):
         self.s=[]
