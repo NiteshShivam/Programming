@@ -1,8 +1,9 @@
-Given a binary tree, your task is to find all duplicate subtrees from the given binary tree.
+'''Given a binary tree, your task is to find all duplicate subtrees from the given binary tree.
 
-Note:  Return the root of each tree in the form of a list array & the driver code will print the tree in pre-order tree traversal in lexicographically increasing order.
-
-Approach 1:
+Note:  Return the root of each tree in the form of a list array &
+the driver code will print the tree in pre-order tree traversal in lexicographically increasing order.
+'''
+#Approach 1:
 class Solution:
     def get(self, mp, node, ans):
         if not node:
