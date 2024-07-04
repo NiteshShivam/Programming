@@ -52,3 +52,20 @@ class Solution:
         currentSum=0
         self.solve(head.next,temp,currentSum)
         return head.next
+
+
+#Approach 3 : recursion:
+
+class Solution:
+    def mergeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        head=head.next
+        temp=head
+        if not temp:
+            return head
+        current=0
+        while temp and temp.val!=0:
+            current+=temp.val
+            temp=temp.next
+        head.val=current
+        head.next=self.mergeNodes(temp)
+        return head
