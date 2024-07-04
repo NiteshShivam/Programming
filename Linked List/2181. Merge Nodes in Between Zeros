@@ -27,3 +27,28 @@ class Solution:
             temp2 = temp2.next
         temp1.next=None
         return head.next
+
+
+
+Approach 2: recursion:
+
+class Solution:
+    def solve(self,head,temp,currentSum):
+        if not head:
+            #temp = temp.next
+            #temp.val=currentSum
+            temp.next=None
+            return
+        if head.val==0:
+            temp = temp.next
+            temp.val = currentSum
+            currentSum = 0
+        currentSum = currentSum+head.val
+        head=head.next
+        
+        self.solve(head,temp,currentSum)
+    def mergeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        temp = head
+        currentSum=0
+        self.solve(head.next,temp,currentSum)
+        return head.next
