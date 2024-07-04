@@ -1,4 +1,4 @@
-Given two strings str1 & str 2 of length n & m respectively, return the length of their 
+'''Given two strings str1 & str 2 of length n & m respectively, return the length of their 
 longest common subsequence. If there is no common subsequence then, return 0. 
 
 A subsequence is a sequence that can be derived from the given string by deleting 
@@ -7,7 +7,7 @@ For example, "abe" is a subsequence of "abcde".
 
 
 
-
+'''
 class Solution:
     
     #Function to find the length of longest common subsequence in two strings.
