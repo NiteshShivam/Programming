@@ -19,4 +19,31 @@ class Solution:
         for key,value in hashM.items():
             if key<=N:
                 arr[key-1]=value
+
+
+Approach 2:
+class Solution:
+    #Function to count the frequency of all elements from 1 to N in the array.
+    def frequencyCount(self, arr, N, P):
+        # code here
+        i = 0
+        while i<N:
+            if arr[i]<=0:
+                i+=1
+                continue
+            value = arr[i]-1
+            if value>=N:
+                arr[i]=0
+                i+=1
+                continue
+            if arr[value]<=0:
+                arr[value]-=1
+                arr[i]=0
+                i+=1
+            else:
+                arr[i] = arr[value]
+                arr[value]=-1
+        #print(arr)
+        for i in range(N):
+            arr[i]=abs(arr[i])
             
