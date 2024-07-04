@@ -1,10 +1,10 @@
-Given an array arr[] of n positive integers which can contain integers from 1 to p
+'''Given an array arr[] of n positive integers which can contain integers from 1 to p
 where elements can be repeated or can be absent from the array.
 Your task is to count the frequency of all numbers from 1 to n.
 Do modify the array in-place changes in arr[], such that arr[i] = frequency(i) and assume 1-based indexing.
 
 Note: The elements greater than n in the array can be ignored for counting. 
-
+'''
 
 Approach 1 using space:
 class Solution:
