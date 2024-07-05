@@ -4,6 +4,9 @@ length M, where there is a directed edge from edge[i][0] to edge[i][1] with a di
 
 Find the shortest path from src(0) vertex to all the vertices and
 if it is impossible to reach any vertex, then return -1 for that vertex.
+
+link : 
+https://www.youtube.com/watch?v=ZUFQfFaU-8U
 '''
 #User function Template for python3
 from collections import deque
