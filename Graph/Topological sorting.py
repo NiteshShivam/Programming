@@ -32,3 +32,26 @@ class Solution:
         # Code here
 
 
+
+Approach 2:
+    # adj[v] = each
+    # each = (v,weight) ,directed graph
+    # link : https://github.com/NiteshShivam/Programming/blob/main/Graph/Shortest%20path%20in%20Directed%20Acyclic%20Graph.py
+    # https://www.youtube.com/watch?v=ZUFQfFaU-8U
+    def topoSortDFS(self,V,adj):
+        stack = []
+        visited = [False]*V
+        def dfs(v,visited,stack):
+            visited[v]=True
+            for each in adj[v]:
+                temp = each[0]
+                if visited[temp]==False:
+                    dfs(temp,visited,stack)
+            stack.append(v)
+        for i in range(V):
+            if visited[i]==False:
+                dfs(i,visited,stack)
+        result = []
+        while stack:
+            result.append(stack.pop())
+        return result
