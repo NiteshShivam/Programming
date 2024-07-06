@@ -1,10 +1,17 @@
 #User function Template for python3
 '''
-Given inorder and postorder traversals of a binary tree(having n nodes) in the arrays in[] and post[] respectively. The task is to construct a unique binary tree from these traversals.
+Given inorder and postorder traversals of a binary tree(having n nodes) in
+the arrays in[] and post[] respectively. The task is to construct a unique binary tree from these traversals.
 
 Driver code will print the preorder traversal of the constructed tree.
 
-Note :- The inorder and postorder traversals contain unique values, and every value present in the postorder traversal is also found in the inorder traversal.
+Note :- The inorder and postorder traversals contain unique values, and 
+every value present in the postorder traversal is also found in the inorder traversal.
+
+
+https://www.geeksforgeeks.org/problems/tree-from-postorder-and-inorder/1
+
+https://youtu.be/y6zSY_z7Kh4
 '''
 '''
 class Node:
@@ -30,7 +37,7 @@ class Solution:
                 break
             i+=1
         self.idx = self.idx-1
-        root.right = self.solve(i+1,end)
+        root.right = self.solve(i+1,end)#first call right subtree
         root.left = self.solve(start,i-1)
         
         return root
