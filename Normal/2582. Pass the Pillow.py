@@ -9,6 +9,7 @@ Given the two positive integers n and time, return the index of the person holdi
 
  https://leetcode.com/problems/pass-the-pillow/description/
 '''
+Approach 1
 class Solution:
     def passThePillow(self, n: int, time: int) -> int:
         current = 1
@@ -24,3 +25,12 @@ class Solution:
                 current=current-1
             time =time-1
         return current
+
+Approach 2:
+class Solution:
+    def passThePillow(self, n: int, time: int) -> int:
+        roundD = time//(n-1)
+        timeL = time%(n-1)
+        if roundD%2==0:
+            return timeL+1
+        return n-timeL
