@@ -29,3 +29,22 @@ class Solution:
             return -1
         self.dfs(root,1,target)
         return self.result
+
+Code 2:
+class Solution:
+
+    def dfs(self,root,level,target):
+        if not root:
+            return 0
+        if root.data == target:
+            return level
+        l = self.dfs(root.left,level+1,target)
+        if l!=0:
+            return l
+        return self.dfs(root.right,level+1,target)
+       
+    def getLevel(self, root,target):
+        if not root:
+            return 0
+        
+        return self.dfs(root,1,target)
