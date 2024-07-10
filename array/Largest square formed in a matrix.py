@@ -42,3 +42,43 @@ class Solution:
         self.result = 0
         self.solve(0,0)
         return self.result
+
+
+
+
+Approach 2 :
+#using Table Method:
+from typing import List
+
+
+class Solution:
+    def __init__(self):
+        self.mat = None
+        self.row = 0
+        self.col = 0
+        self.result = 0
+        self.dp = None
+    
+    def solveTable(self):
+        self.dp = [[0]*(self.col+1) for i in range(self.row+1)]
+        for i in range(self.row-1,-1,-1):
+            for j in range(self.col-1,-1,-1):
+                right = self.dp[i][j+1]
+                diagonal = self.dp[i+1][j+1]
+                down = self.dp[i+1][j]
+                if self.mat[i][j]==1:
+                    self.dp[i][j] = 1 + min(right,diagonal,down)
+                    self.result = max(self.result, self.dp[i][j])
+        
+        return self.dp[i][j]
+                
+    def maxSquare(self, n : int, m : int, mat : List[List[int]]) -> int:
+        # code here
+    
+        self.mat = mat
+        self.row = len(mat)
+        self.col = len(mat[0])
+        self.result = 0
+        #self.solve(0,0)
+        self.solveTable()
+        return self.result
