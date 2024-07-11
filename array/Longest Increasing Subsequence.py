@@ -8,6 +8,9 @@ term in the sequence is smaller than the term that comes after it.
 https://www.geeksforgeeks.org/problems/longest-increasing-subsequence-1587115620/1
 https://www.youtube.com/watch?v=DG50PJIx2SM
 https://www.youtube.com/watch?v=h9rm4N8XbL0
+
+last apporach will pass : O(n*logn)
+https://www.youtube.com/watch?v=on2hvxBXJH4
 '''
 class Solution:
     
@@ -23,7 +26,7 @@ class Solution:
         for i in range(n):
             dp[0] = max(dp[0],dp[i])
         return dp[0]
-===========================
+========================================================================================================================================================================
 Approach 2:
 
 class Solution:
@@ -46,3 +49,26 @@ class Solution:
             return max(take,skip)
             
         return solve(0,-1)
+
+========================================================================================================================================================================
+class Solution:
+
+    #Function to find length of longest increasing subsequence.
+    def longestSubsequence(self, n, arr):
+        space = [arr[0]]
+        for i in range(1,n):
+            if space[-1]<arr[i]:
+                space.append(arr[i])
+            else:
+                
+                left = 0
+                rigth = len(space)-1
+                while left<rigth:
+                    mid = left+(rigth-left)//2
+                    if space[mid]<arr[i]:
+                        left  =mid+1
+                    else:
+                        
+                        rigth = mid
+                space[left]=arr[i]
+        return len(space)
