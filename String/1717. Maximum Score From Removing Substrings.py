@@ -86,4 +86,36 @@ class Solution:
             result,newS = calculate(s,"ba",y)
             t ,n = calculate(newS,"ab",x)
             return result+t
-        
+
+
+====================================================================================
+class Solution:
+    def maximumGain(self, s: str, x: int, y: int) -> int:
+        length = len(s)
+        maxS = ""
+        minS = ""
+        if x>y:
+            maxS='ab'
+            minS='ba'
+        else:
+            maxS='ba'
+            minS ='ab'
+        def remove(s,maxS):
+            i=0
+            j=0
+            length = len(s)
+            s = list(s)
+            while j<length:
+                s[i]=s[j]
+                i+=1
+                if i>=2 and s[i-2]==maxS[0] and s[i-1]==maxS[1]:
+                    i=i-2
+                j+=1
+            return "".join(s[:i])
+        newS = remove(s,maxS)
+        l = len(newS)
+        result = ((length-l)//2)*max(x,y)
+        newS = remove(newS,minS)
+        result= result+((l-len(newS))//2) *min(x,y)
+        return result
+
