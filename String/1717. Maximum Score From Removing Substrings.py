@@ -10,6 +10,7 @@ Return the maximum points you can gain after applying the above operations on s.
 
 
 https://leetcode.com/problems/maximum-score-from-removing-substrings/description/
+https://www.youtube.com/watch?v=WTAjAcjSTqM
 '''
 class Solution:
     def maximumGain(self, s: str, x: int, y: int) -> int:
@@ -50,4 +51,39 @@ class Solution:
             result,newS = calculate(s,'ba',y)
         result += finalC(newS,"ab","ba",x,y)
         return result
+        ==============================================   ==============================================   ==============================================
+
+
+
+
+
+
+class Solution:
+    def maximumGain(self, s: str, x: int, y: int) -> int:
+        stack =deque()
+        length = len(s)
+        def calculate(s,substring,points):
+            stack = deque()
+            profit = 0
+            for c in s:
+                if stack and stack[-1]+c==substring:
+                    stack.pop()
+                    profit +=points
+                else:
+                    stack.append(c)
+            newS = ""
+            for c in stack:
+                newS+=c
+            return profit,newS
+            
+        result = 0
+        newS = ""
+        if x>y:
+            result,newS = calculate(s,"ab",x)
+            t ,n = calculate(newS,"ba",y)
+            return result+t
+        else:
+            result,newS = calculate(s,"ba",y)
+            t ,n = calculate(newS,"ab",x)
+            return result+t
         
