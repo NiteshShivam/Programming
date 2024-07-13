@@ -23,7 +23,11 @@ https://youtu.be/fkcA9zvP7_w
 class Solution:
     def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:
         stack = deque()
-        sort_positions = sorted(range(len(positions)),key=positions.__getitem__)
+        n = len(positions)
+        # sort_positions = sorted(range(len(positions)),key=positions.__getitem__)
+        # above is also valid
+        sort_positions = [i for i in range(n)]
+        sort_positions.sort(key=lambda x:positions[x])
         for i in sort_positions:
             if directions[i]=='R':
                 stack.append(i)
