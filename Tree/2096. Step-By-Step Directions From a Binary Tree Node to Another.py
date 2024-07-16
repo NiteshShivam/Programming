@@ -1,3 +1,8 @@
+'''
+https://www.youtube.com/watch?v=6GXfmgfOGeQ&t=75s
+https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/
+'''
+
 class Solution:
     
     
@@ -75,3 +80,54 @@ class Solution:
                         
                         
         return bfs(startValue,destValue)
+
+
+
+
+
+===================================
+Approach 3:
+class Solution:
+    def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
+        def lca(root,s,t):
+            if not root:
+                return None
+            if root.val==s or root.val==t:
+                return root
+            leftVal = lca(root.left,s,t)
+            rightVal = lca(root.right,s,t)
+            if leftVal and rightVal:
+                return root
+            if leftVal:
+                return leftVal
+            else:
+                return rightVal
+        commonP = lca(root,startValue,destValue)
+        lcaS = ""
+        lcaD = ""
+        def find(node,s):
+            path = []
+            def dfs(n):
+                if not n:
+                    return False
+                if n.val == s:
+                    return True
+                path.append("L")
+                if dfs(n.left):
+                    return True
+                path.pop()
+                path.append("R")
+                if dfs(n.right):
+                    return True
+                path.pop()
+                return False
+
+            dfs(node)
+            return path
+
+        lcaS =find(commonP,startValue)
+        lcaD = find(commonP,destValue)
+        result = ""
+        result += "U"*len(lcaS)
+        result += ''.join(lcaD)
+        return result
