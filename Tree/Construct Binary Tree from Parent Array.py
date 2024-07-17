@@ -21,3 +21,29 @@ class Solution:
                 else:
                     space[value].right = space[i]
         return root
+
+
+
+Approach 2:
+
+===================================================
+class Solution:
+    #Function to construct binary tree from parent array.
+    def createTree(self,parent):
+        space = {}
+        n = len(parent)
+        root = None
+        for i in range(n):
+            par = parent[i]
+            if i not in space:
+                space[i] = Node(i)
+            if par==-1:
+                root = space[i]
+                continue
+            if par not in space:
+                space[par] = Node(par)
+            if space[par].left  ==None:
+                space[par].left=space[i]
+            else:
+                space[par].right = space[i]
+        return root
