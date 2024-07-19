@@ -4,6 +4,8 @@ Count and return an array ans where ans[i] denotes the number of smaller element
 
 https://www.geeksforgeeks.org/problems/count-smaller-elements2214/1
 '''
+
+#Approach 1 : AVL Tree
 #User function Template for python3
 class Node:
     def __init__(self,data):
@@ -90,3 +92,30 @@ class Solution:
 		    root = insert(root,arr[index],count)
 		    smaller[index]=count[0]
 		return smaller
+
+============================
+Approach 2: 
+class Solution:
+    def binarySearch(self,arr,target):
+        low = 0
+        high = len(arr)
+        while low<high:
+            mid = low+(high-low)//2
+            if arr[mid]<target:
+                low = mid+1
+            else:
+                high = mid
+        return low
+
+	def constructLowerArray(self,arr):
+		# code here
+		length = len(arr)
+		result = [0]*length
+		sorted_arr = []
+		for i in range(length-1,-1,-1):
+		    val = arr[i]
+		    index = self.binarySearch(sorted_arr,val)
+		    result[i]=index
+		    sorted_arr.insert(index,val)
+		return result
+
