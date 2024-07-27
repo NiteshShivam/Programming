@@ -142,3 +142,49 @@ class Solution:
         return self.findResult(n,spm,distanceThreshold)
         
         
+
+
+
+=========================================================
+from collections import defaultdict
+class Solution:
+    def floyd_warshall(self,adj):
+        row = len(adj)
+        col = len(adj[0])
+        for via in range(row):
+            for i in range(row):
+                for j in range(col):
+                    adj[i][j] = min(adj[i][j],adj[i][via]+adj[via][j])
+       
+    
+    def findResult(self,n,spm,distanceThreshold):
+        maxResult = -1
+        maxCount  =n+1
+        for i in range(n):
+            count = 0
+            for j in range(n):
+                if spm[i][j]<=distanceThreshold:
+                    count +=1
+            if maxCount>=count:
+                maxCount = count
+                maxResult = i
+        return maxResult
+
+    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
+        adj = defaultdict(list)
+        self.biValue = 10**9+7
+        spm = [[self.biValue]*n for i in range(n)]
+        for i in range(n):
+            spm[i][i]=0
+        for edge in edges:
+            u = edge[0]
+            v = edge[1]
+            w = edge[2]
+            spm[u][v]=w
+            spm[v][u]=w
+        
+        self.floyd_warshall(spm)
+       
+        return self.findResult(n,spm,distanceThreshold)
+        
+        
