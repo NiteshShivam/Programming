@@ -5,7 +5,8 @@ A subsequence is a sequence that can be derived from the given string by deletin
 some or no elements without changing the order of the remaining elements.
 For example, "abe" is a subsequence of "abcde".
 
-
+https://www.geeksforgeeks.org/problems/longest-common-subsequence-1587115620/1
+https://www.youtube.com/watch?v=aJNu_DLyOxY&t=2119s
 
 '''
 class Solution:
@@ -49,3 +50,27 @@ class Solution:
         self.m = m
         return self.solve(0,0,str1,str2)
 
+
+
+=================================
+
+import sys
+sys.setrecursionlimit(5000)
+
+class Solution:
+
+    def lcs(self, n, m, str1, str2):
+        t = max(m,n)
+        dp = [[-1]*(t+1) for _ in range(t+1)]
+        def solve(i,j):
+            if i>=n or j>=m:
+                return 0
+            if dp[i][j]!=-1:
+                return dp[i][j]
+            if str1[i]==str2[j]:
+                dp[i][j]=1+solve(i+1,j+1)
+                return dp[i][j]
+            else:
+                dp[i][j]= max(solve(i+1,j),solve(i,j+1))
+            return dp[i][j]
+        return solve(0,0)
