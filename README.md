@@ -16,6 +16,6 @@
 - Backtracking
 - Greedy Algorithms
 - Divide and Conquer
-- Heap
+- [Heap](https://stackoverflow.com/questions/2501457/what-do-i-use-for-a-max-heap-implementation-in-python)
 - Trie
 - Bit Manipulation
