@@ -2,6 +2,25 @@
 
 https://www.geeksforgeeks.org/problems/row-with-max-1s0023/1
 '''
+
+ # O(n+m)
+
+class Solution:
+
+	def rowWithMax1s(self,arr):
+	    row = len(arr)
+	    col = len(arr[0])
+	    j = col-1
+	    result = -1
+	    for i in range(row):
+	        while arr[i][j]==1 and j>=0:
+	            result = i
+	            j-=1
+	    return result
+
+
+
+============================================================================
 class Solution:
 
 	def rowWithMax1s(self,arr):
@@ -44,3 +63,4 @@ class Solution:
                 if arr[j][i]==1:
                     return j
         return -1
+	    
