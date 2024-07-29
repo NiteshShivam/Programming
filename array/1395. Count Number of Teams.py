@@ -1,5 +1,7 @@
 '''
 
+https://youtu.be/UZupIKXnzq8
+
 https://leetcode.com/problems/count-number-of-teams/description/
 '''
 class Solution:
