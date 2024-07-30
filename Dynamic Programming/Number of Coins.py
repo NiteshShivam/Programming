@@ -2,6 +2,20 @@
 
 https://www.geeksforgeeks.org/problems/number-of-coins1824/1
 '''
+
+class Solution:
+    
+    def minCoins(self, coins, M, V):
+        dp = [float('inf')]*(V+1)
+        dp[0]=0
+        for coin in coins:
+            for i in range(coin,V+1):
+                dp[i] = min(dp[i],dp[i-coin]+1)
+        if dp[V]==float('inf'):
+            return -1
+        return dp[V]
+        
+======================================
 import sys
 sys.setrecursionlimit(50000)
 class Solution:
