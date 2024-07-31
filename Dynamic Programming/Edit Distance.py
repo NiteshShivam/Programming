@@ -34,6 +34,36 @@ class Solution:
 
 ===========================================
 
+
+
+class Solution:
+    def solve(self,i,j):
+        if i==0 or j==0:
+            return i+j
+        else:
+            if self.dp[i][j]!=-1:
+                return self.dp[i][j]
+            if self.s[i-1]==self.t[j-1]:
+                return self.solve(i-1,j-1)
+            insert = 1+self.solve(i,j-1)
+            delete = 1+self.solve(i-1,j)
+            replace = 1+self.solve(i-1,j-1)
+            self.dp[i][j] =  min(insert,delete,replace)
+            return self.dp[i][j]
+	def editDistance(self, s, t):
+	    self.s = s
+	    self.t = t
+		sl = len(s)
+		tl = len(t)
+		self.dp = [[-1]*(tl+1) for i in range(sl+1)]
+		return self.solve(sl,tl)
+
+
+
+
+
+============================================
+
 class Solution:
 	def editDistance(self, s, t):
 		lengthS = len(s)
