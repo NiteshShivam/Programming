@@ -3,6 +3,31 @@
 https://www.geeksforgeeks.org/problems/circular-tour-1587115620/1
 https://youtu.be/tcOcmNHFTTM
 '''
+Approach 1:
+class Solution:
+    
+    #Function to find starting point where the truck can start to get through
+    #the complete circle without exhausting its petrol in between.
+    def tour(self,lis, n):
+        pet = 0
+        dis = 0
+        for i in range(len(lis)):
+            pet +=lis[i][0]
+            dis +=lis[i][1]
+        if dis>pet:
+            return -1
+        result = 0
+        total = 0
+        for i in range(len(lis)):
+            total = total + lis[i][0]-lis[i][1]
+            if total<0:
+                total=0
+                result =i+1
+        return result
+
+Approach 2
+==================================
+
 class Solution:
     
     #Function to find starting point where the truck can start to get through
