@@ -1,5 +1,12 @@
 '''
+
+https://www.geeksforgeeks.org/problems/spirally-traversing-a-matrix-1587115621/1
+https://youtu.be/73j2ipxR958
+'''
+
+'''
 Given a matrix of size r*c. Traverse the matrix in spiral form.
+
 '''
 
 class Solution:
