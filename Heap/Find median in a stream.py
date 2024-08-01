@@ -1,5 +1,7 @@
 '''
 https://www.geeksforgeeks.org/problems/find-median-in-a-stream-1587115620/1
+https://leetcode.com/problems/find-median-from-data-stream/
+
 https://youtu.be/jnj87BSi9Is
 '''
 
