@@ -8,7 +8,7 @@
 - Binary Search
 - Linked List
 - Stack
-- Queue(https://www.geeksforgeeks.org/queue-in-python/)
+- [Queue](https://www.geeksforgeeks.org/queue-in-python/)
 - Hashing
 - Sorting
 - Searching
