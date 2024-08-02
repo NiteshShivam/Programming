@@ -20,15 +20,22 @@ def rightrotate(root):
     root.height = 1 + max(height(root.left),height(root.right))
     new_root.height = 1+max(height(new_root.left),height(new_root.right))
     return new_root
-    
+def getBalance(root):
+    if not root:
+        return 0
+    return height(root.left)-height(root.right)
+def getMinimum(root):
+    while root.left:
+        root = root.left
+    return root
 def deleteNode(root, key):
     if not root:
         return root
         
     if root.data<key:
-        deleteNode(root.right,key)
+        root.right = deleteNode(root.right,key)
     elif root.data>key:
-        deleteNode(root.left,key)
+        root.left = deleteNode(root.left,key)
     else:
         if not root.left:
             temp = root.right
@@ -38,22 +45,25 @@ def deleteNode(root, key):
             temp = root.left
             root = None
             return temp
-            
+        temp = getMinimum(root.right)
+        root.data = temp.data
+        root.right = deleteNode(root.right,temp.data)
     
-    # some data
+    # if not root:
+    #     return root
     
     root.height = 1+max(height(root.left),height(root.right))
     
     diff = height(root.left)-height(root.right)
     
-    if diff>1 and root.left.data>key:
+    if diff>1 and getBalance(root.left)>=0:
         return rightrotate(root)
-    elif diff<-1 and root.right.data<key:
+    elif diff<-1 and getBalance(root.right)<=0:#root.right.data<key:
         return leftrotate(root)
-    elif diff>1 and root.left.data<key:
+    elif diff>1 and getBalance(root.left)<0:# root.left.data<key:
         root.left = leftrotate(root.left)
         return rightrotate(root)
-    elif diff<-1 and root.right.data>key:
+    elif diff<-1 and getBalance(root.right)>0:#root.right.data>key:
         root.right = rightrotate(root.right)
         return leftrotate(root)
     return root
