@@ -1,5 +1,6 @@
 '''
 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/description/
+https://youtu.be/t82KJaI1kNQ
 '''
 class Solution:
     def minSwaps(self, nums: List[int]) -> int:
