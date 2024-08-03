@@ -1,3 +1,30 @@
+'''
+https://youtu.be/Q7v239y-Tik
+https://www.geeksforgeeks.org/problems/stock-buy-and-sell2615/1
+'''
+
+
+from typing import List
+class Solution:
+    def stockBuyAndSell(self, n: int, prices: List[int]) -> int:
+        
+        profit = 0
+        for i in range(1,n):
+            today = prices[i]-prices[i-1]
+            if today>0:
+                profit+=today
+        return profit
+
+
+  Solution required was O(N)
+
+below are more and video for below
+'''
+https://youtu.be/iTvEXpOAyHY
+'''
+
+
+/
 class Solution {
   public:
   vector<vector<int>> dp; 
@@ -27,7 +54,7 @@ class Solution {
 
 
 
-// python given 
+// python given  time limit
 
 =============================
 import sys
