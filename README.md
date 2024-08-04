@@ -1,7 +1,7 @@
 # Topics
 
 - Array
-- String
+- [String](https://www.w3schools.com/python/python_ref_string.asp)
 - Dynamic Programming (DP)
 - Graph
 - Tree
