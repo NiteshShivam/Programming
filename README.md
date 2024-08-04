@@ -1,6 +1,6 @@
 # Topics
 
-- Array
+- [Array](https://www.w3schools.com/python/python_ref_list.asp)
 - [String](https://www.w3schools.com/python/python_ref_string.asp)
 - Dynamic Programming (DP)
 - Graph
@@ -9,7 +9,7 @@
 - Linked List
 - Stack
 - [Queue](https://www.geeksforgeeks.org/queue-in-python/)
-- Hashing
+- [Hashing](https://www.w3schools.com/python/python_ref_dictionary.asp)
 - Sorting
 - Searching
 - Recursion
@@ -20,3 +20,5 @@
 - Trie
 - Bit Manipulation
 - [kali linux shortcut](https://www.geeksforgeeks.org/kali-linux-shortcut-keys/)
+- [set](https://www.w3schools.com/python/python_ref_set.asp)
+- (tuple)(https://www.w3schools.com/python/python_ref_tuple.asp)
