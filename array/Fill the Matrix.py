@@ -1,6 +1,20 @@
 '''
 https://www.geeksforgeeks.org/problems/fill-the-matrix--170647/1
+Solution comment:
+https://discuss.geeksforgeeks.org/comment/972691000323882a407568fd569bbe5b/practice
 '''
+class Solution:
+    def minIteration(self, N, M, x, y):
+       
+        top = x-1
+        down = N-x
+        left = y-1
+        right = M-y
+        
+        return max(top+left,top+right,left+down,down+right)
+
+
+========================
 from collections import deque
 class Solution:
     def minIteration(self, N, M, x, y):
