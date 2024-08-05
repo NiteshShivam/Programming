@@ -6,6 +6,26 @@ https://www.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1
 
 https://www.youtube.com/watch?v=0FtVY6I4pB8
 '''
+# without sorting the key ,using min and max function,O(n)
+def bottomView(self, root):
+        q = deque()
+        space = {}
+        q.append((root,0))
+        while q:
+            node,dist = q.popleft()
+            if dist not in space:
+                space[dist]=node.data
+            else:
+                space[dist] = node.data
+            if node.left:
+                q.append((node.left,dist-1))
+            if node.right:
+                q.append((node.right,dist+1))
+        result = [space[key] for key in range(min(space),max(space)+1)]
+        return result
+
+
+==================================
 from collections import deque
 class Solution:
     def bottomView(self, root):
