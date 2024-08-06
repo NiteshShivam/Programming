@@ -1,7 +1,27 @@
 '''
 https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-i/
 https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-ii/description/
+
+https://youtu.be/fX6sHghLCow
 '''
+
+
+class Solution:
+    def minimumPushes(self, word: str) -> int:
+        space = defaultdict(int)
+        current = 2
+        result = 0
+        for each in word:
+            if current>9:
+                current=2
+            space[current]+=1
+            result = result+space[current]
+            current+=1
+        
+        return result
+
+
+===============
 class Solution:
     def minimumPushes(self, word: str) -> int:
         space = {}
