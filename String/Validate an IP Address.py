@@ -47,3 +47,33 @@ def isValid(s):
     if 0<=int(temp)<=255:
         return True
     return False
+
+
+
+
+
+
+==============================
+class Solution:
+    def isValid(self, str):
+        length = len(str)
+        dot=0
+        current=""
+        for i in range(length):
+            if str[i]==".":
+                dot+=1
+                if 0<=int(current)<=255:
+                    current=""
+                else:
+                    return False
+            else:
+                current += str[i]
+        if dot==3:
+            if 0<=int(current)<=255:
+                current=""
+                return True
+            else:
+                return False
+        return False
+            
+            
