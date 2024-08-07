@@ -4,8 +4,35 @@ The task is to find the element that would be at the kth position of the final s
 
  
 https://www.geeksforgeeks.org/problems/k-th-element-of-two-sorted-array1317/1
+nice Solution : https://www.geeksforgeeks.org/k-th-element-two-sorted-arrays/
 https://youtu.be/nv7F4PiLUzo
 '''
+
+class Solution:
+    
+    def kthElement(self, k, arr1, arr2):
+        def kth(k,arr1,arr2):
+            length1 = len(arr1)
+            length2 = len(arr2)
+            if length1==0:
+                return arr2[k]
+            if length2==0:
+                return arr1[k]
+            mid1 = length1//2
+            mid2 = length2//2
+            if mid1+mid2<k:
+                if arr1[mid1]>arr2[mid2]:
+                    return kth(k-mid2-1,arr1,arr2[mid2+1:])
+                else:
+                    return kth(k-mid1-1,arr1[mid1+1:],arr2)
+            else:
+                if arr1[mid1]>arr2[mid2]:
+                    return kth(k,arr1[:mid1],arr2)
+                else:
+                    return kth(k,arr1,arr2[:mid2])
+        return kth(k-1,arr1,arr2)
+======================================
+
 class Solution:
     def kthElement(self,  arr1, arr2, n, m, k):
         i = 0
