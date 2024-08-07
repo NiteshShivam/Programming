@@ -22,7 +22,7 @@ class Solution:
         return arr2[j]
 
 
-=========================
+========================================
 #User function Template for python3
 
 class Solution:
@@ -38,30 +38,13 @@ class Solution:
             # middle element.
             cut1 = (low+high)>>1 
             cut2 = k-cut1
-            l1 = 0
-            l2 = 0
-            r1 =0
-            r2 = 0
+
+         
+            l1 = float('-inf') if cut1==0 else arr1[cut1-1]
+            l2 = float('-inf') if cut2==0 else arr2[cut2-1]
+            r1 = float('inf') if cut1==n else arr1[cut1]
+            r2 = float('inf') if cut2==m else arr2[cut2]
             
-            if cut1==0:
-                l1 = float('-inf')
-            else:
-                l1 = arr1[cut1-1]
-            if cut2==0:
-                l2 = float('-inf')
-            else:
-                l2 = arr2[cut2-1]
-                
-            if cut1==n:
-                r1 = float('inf')
-            else:
-                r1 = arr1[cut1]
-                
-                
-            if cut2==m:
-                r2 = float('inf')
-            else:
-                r2  = arr2[cut2]
             
             if l1<=r2 and l2<=r1:
                 return max(l1,l2)
