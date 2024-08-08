@@ -27,3 +27,22 @@ class Solution:
                 return False
         else:
             return False
+
+===================================================
+class Solution:
+    def solve(self,root):
+        if not root:
+            return True,0
+        if not root.left and not root.right:
+            return True,root.data
+        lbool,lvalue =  self.solve(root.left)
+        rbool,rvalue = self.solve(root.right)
+        if lbool==False or rbool==False:
+            return False,0
+        if root.data ==lvalue+rvalue:
+            return True,root.data+lvalue+rvalue
+        else:
+            return False,0
+    def is_sum_tree(self, node):
+        boolB ,v = self.solve(root)
+        return boolB
