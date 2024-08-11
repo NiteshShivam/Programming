@@ -25,3 +25,43 @@ class Solution:
                     break
             
         return (count,profit)
+
+
+
+
+
+
+
+
+# cpp
+=================================
+class Solution 
+{
+    public:
+    static bool compareByProfit(Job a,Job b){
+        return a.profit>b.profit;
+    }
+    //Function to find the maximum profit and the number of jobs done.
+    vector<int> JobScheduling(Job arr[], int n) 
+    { 
+        int maxDead = 0;
+        for(int i=0;i<n;i++){
+            maxDead = max(maxDead,arr[i].dead);
+        }
+        vector<int> space(maxDead,0);
+        sort(arr,arr+n,compareByProfit);
+        int count=0;
+        int profit=0;
+        for(int i=0;i<n;i++){
+            for(int j=arr[i].dead-1;j>=0;j--){
+                if(space[j]==0){
+                    space[j]=1;
+                    profit+=arr[i].profit;
+                    count++;
+                    break;
+                }
+            }
+        }
+        return {count,profit};
+    } 
+};
