@@ -50,3 +50,42 @@ public:
         return regions;
     }
 };
+
+
+// .py
+======================================
+ class Solution:
+    def dfs(self,i,j):
+            self.matrix[i][j]=1
+            direction = [(-1,0),(0,-1),(1,0),(0,1)]
+            for each in direction:
+                new_i = i+ each[0]
+                new_j = j+each[1]
+                if new_i>=0 and new_i<self.rowM and new_j>=0 and new_j<self.colM and self.matrix[new_i][new_j]==0:
+                    self.matrix[i][j]=1
+                    self.dfs(new_i,new_j)
+    def regionsBySlashes(self, grid: List[str]) -> int:
+        row = len(grid)
+        col = len(grid[0])
+        self.matrix = [[0]*(row*3) for i in range(row*3)]
+        for i in range(row):
+            for j in range(row):
+                if grid[i][j]=="/":
+                    self.matrix[i*3][j*3+2]=1
+                    self.matrix[i*3+1][j*3+1]=1
+                    self.matrix[i*3+2][j*3]=1
+                elif grid[i][j]=="\\":
+                    self.matrix[i*3][j*3]=1
+                    self.matrix[i*3+1][j*3+1]=1
+                    self.matrix[i*3+2][j*3+2]=1
+        count=0
+        self.rowM= len(self.matrix)
+        self.colM = len(self.matrix[0])
+        for i in range(self.rowM):
+            for j in range(self.colM):
+                if self.matrix[i][j]==0:
+                    self.dfs(i,j)
+                    count+=1
+
+                    
+        return count 
