@@ -2,6 +2,7 @@
 https://www.geeksforgeeks.org/problems/sum-of-middle-elements-of-two-sorted-arrays2305/1
 
 https://youtu.be/6D9T2ZY8h5c
+https://youtu.be/7nABqJCEMuY
 '''
 class Solution:
     def sum_of_middle_elements(self, arr1, arr2):
@@ -86,3 +87,33 @@ class Solution:
            
             result = ans1
         return result
+
+
+
+================================
+class Solution:
+    def sum_of_middle_elements(self, arr1, arr2):
+        if len(arr1)>len(arr2):
+            return self.sum_of_middle_elements(arr2, arr1)
+        m = len(arr1)
+        n = len(arr2)
+        l = 0
+        r =m
+        while l<=r:
+            px = l+(r-l)//2
+            py = (m+n+1)//2-px
+            x1 = arr1[px-1] if px>0 else float('-inf')
+            x2 = arr2[py-1] if py>0 else float('-inf')
+            x3 = arr1[px] if px<m else float('inf')
+            x4 = arr2[py] if py<n else float('inf')
+            
+            if x1<=x4 and x2<=x3:
+                if (m+n)%2==0:
+                    return max(x1,x2)+min(x3,x4)
+                else:
+                    return max(x1,x2)
+            if x1>x4:
+                r = px-1
+            else:
+                l = px+1
+        return -1
