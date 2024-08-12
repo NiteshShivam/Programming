@@ -1,5 +1,7 @@
 '''
 https://www.geeksforgeeks.org/problems/sum-of-middle-elements-of-two-sorted-arrays2305/1
+
+https://youtu.be/6D9T2ZY8h5c
 '''
 class Solution:
     def sum_of_middle_elements(self, arr1, arr2):
