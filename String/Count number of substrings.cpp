@@ -1,4 +1,5 @@
 // https://www.geeksforgeeks.org/problems/count-number-of-substrings4528/1
+//https://discuss.geeksforgeeks.org/comment/11f03968c46cdcbc8874195d9c99548e/practice
 class Solution
 { long long int solve(string s, int k){
     long long ans=0;
