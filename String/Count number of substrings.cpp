@@ -29,3 +29,32 @@ class Solution
     	return solve(s,k)-solve(s,k-1);
     }
 };
+
+
+
+
+// python
+========================
+class Solution:
+    def solve(self,s,k):
+        left=0
+        ans=0
+        space = [0]*26
+        distinct=0
+        for right in range(len(s)):
+            index = ord(s[right])-ord('a')
+            space[index]+=1
+            if space[index]==1:
+                distinct+=1
+            while(distinct>k):
+                newIndex = ord(s[left])-ord('a')
+                space[newIndex]-=1
+                if space[newIndex]==0:
+                    distinct-=1
+                left+=1
+            ans = ans+right-left+1
+        return ans
+            
+    def substrCount (self,s, k):
+        return self.solve(s,k)-self.solve(s,k-1)
+    
