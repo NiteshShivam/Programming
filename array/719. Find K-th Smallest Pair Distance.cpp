@@ -26,3 +26,25 @@ public:
     }
     
 };
+
+=================================================
+class Solution {
+public:
+    int smallestDistancePair(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<int>result(n*(n-1)/2);
+        int idx=0;
+        int answer=0;
+        for(int i =0;i<nums.size();i++){
+            for(int j=i+1;j<nums.size();j++){
+                answer = abs(nums[i]-nums[j]);
+                result[idx]=answer;
+                idx++;
+            }
+        }
+        nth_element(begin(result),begin(result)+k-1,end(result));
+        return result[k-1];
+    }
+    
+};
+
