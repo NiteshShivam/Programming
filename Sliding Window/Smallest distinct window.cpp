@@ -38,3 +38,28 @@ class Solution{
         return result;
     }
 };
+
+
+// python
+================
+
+class Solution:
+    def findSubString(self, str):
+        unique = len(set(str))
+        
+        space = [0]*256
+        count = 0
+        left=0
+        result = float('inf')
+        for right in range(len(str)):
+            space[ord(str[right])]+=1
+            if space[ord(str[right])]==1:
+                count+=1
+            while count==unique:
+                space[ord(str[left])]-=1
+                if space[ord(str[left])]==0:
+                    count-=1
+                result = min(result,right-left+1)
+                left+=1
+                
+        return result
