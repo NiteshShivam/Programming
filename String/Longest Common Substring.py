@@ -14,3 +14,29 @@ class Solution:
             for j in range(n+1):
                 result = max(result,dp[i][j])
         return result
+
+
+# cpp
+========================================
+class Solution {
+  public:
+    int longestCommonSubstr(string str1, string str2) {
+        int m = str1.size();
+        int n = str2.size();
+        int result = 0;
+        vector<vector<int>>matrix(m+1,vector<int>(n+1,0));
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(str1[i]==str2[j]){
+                    matrix[i+1][j+1] = 1 + matrix[i][j];
+                    result = max(result,matrix[i+1][j+1]);
+                }
+                else{
+                    matrix[i+1][j+1] =0;
+                }
+            }
+        }
+        return result;
+        
+    }
+};
