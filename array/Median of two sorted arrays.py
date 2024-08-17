@@ -117,3 +117,49 @@ class Solution:
             else:
                 l = px+1
         return -1
+
+
+
+
+
+
+# cpp
+=======================
+class Solution{
+    public:
+    double MedianOfArrays(vector<int>& array1, vector<int>& array2)
+    {
+        if(array1.size()>array2.size())
+            return MedianOfArrays(array2,array1);
+        int m = array1.size();
+        int n = array2.size();
+        int l = 0;
+        int r=m;
+        while(l<=r){
+            int px = l+(r-l)/2;
+            int py = (m+n+1)/2-px;
+            int x1 = (px>0)?array1[px-1]:INT_MIN;
+            int x2= (py>0)?array2[py-1]:INT_MIN;
+            int x3 = (px<m)?array1[px]:INT_MAX ;
+            int x4 = (py<n)?array2[py]:INT_MAX ;
+            if(x1<=x4 && x2<=x3){
+                if((m+n)%2==0)
+                {
+                    return (max(x1,x2) + min(x3,x4) )/2.0;
+                }
+                return max(x1,x2);
+            }
+            if(x1>x4){
+                r = px-1;
+            }
+            else{
+                l = px+1;
+            }
+        
+        }
+        return -1;
+    
+    }
+};
+
+
