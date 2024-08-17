@@ -1,5 +1,7 @@
 '''
 https://www.geeksforgeeks.org/problems/zigzag-tree-traversal/1
+
+Approach 3 https://youtu.be/3OXWEdlIGl4
 '''
 from collections import deque
 class Solution:
