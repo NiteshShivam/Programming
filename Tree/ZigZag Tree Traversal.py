@@ -89,8 +89,57 @@ class Solution{
     	       
     	        
     	    }
+
     	    odd = !odd;
     	}
     	return result;
     }
+};
+
+
+
+
+
+
+
+
+
+# cpp
+==========================
+class Solution{
+    public:
+    //Function to store the zig zag order traversal of tree in a list.
+    vector <int> zigZagTraversal(Node* root)
+    {
+        queue<Node*>q;
+        vector<int>result;
+        q.push(root);
+        bool lefttoright=true;
+        while(!q.empty()){
+            int length = q.size();
+            vector<int>temp;
+            while(length--){
+                Node* node = q.front();
+                q.pop();
+                temp.push_back(node->data);
+                if(node->left){
+                    q.push(node->left);
+                }
+                if(node->right){
+                    q.push(node->right);
+                }
+            }
+            if(lefttoright){
+                result.insert(result.end(),temp.begin(),temp.end());
+            }
+            else{
+                reverse(temp.begin(),temp.end());
+                result.insert(result.end(),temp.begin(),temp.end());
+            }
+            lefttoright = !lefttoright;
+        }
+        return result;
+        
+    }
+    
 };
