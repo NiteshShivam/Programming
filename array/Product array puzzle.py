@@ -31,4 +31,32 @@ class Solution:
         return result
         
         
+# cpp
+=========================
+class Solution {
+  public:
+    // nums: given vector
+    // return the Product vector P that hold product except self at each index
+    vector<long long int> productExceptSelf(vector<long long int>& nums) {
+        int length = nums.size();
+        vector<long long int> start(length,1);
+        vector<long long int>end(length,1);
+        vector<long long int>result;
+        int j=length-1;
+        long long int a=1;
+        long long int b=1;
+        for(int i=1;i<length;i++){
+            a = a*nums[i-1];
+            start[i]=a;
+            b = b*nums[j];
+            end[j-1]=b;
+            j-=1;
+        }
         
+        for(int i=0;i<length;i++){
+        
+            result.push_back(start[i]*end[i]);
+        }
+        return result;
+    }
+};
