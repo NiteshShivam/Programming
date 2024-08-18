@@ -2,7 +2,40 @@
 https://www.geeksforgeeks.org/problems/lru-cache/1
 https://youtu.be/81h8O-0U5oo
 '''
+# passing all 
+# the cpp version is also passing all test case
+from collections import OrderedDict
+class LRUCache:
+      
+    #Constructor for initializing the cache capacity with the given value.  
+    def __init__(self,cap):
+        #code here
+        self.cap = cap
+        self.cache = OrderedDict()
+        
+        
+    #Function to return value corresponding to the key.
+    def get(self, key):
+        if key in self.cache:
+            value = self.cache.pop(key)
+            self.cache[key]=value
+            return value
+        return -1
+            
+        
+        
+    #Function for storing key-value pair.   
+    def set(self, key, value):
+        if key in self.cache:
+            self.cache.pop(key)
+        if len(self.cache)==self.cap:
+            self.cache.popitem(last=False)
+        
+        self.cache[key]=value
 
+
+
+===========================================
 # python given time limit in gfg
 from collections import deque
 class LRUCache:
