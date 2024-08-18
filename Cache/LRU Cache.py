@@ -2,6 +2,69 @@
 https://www.geeksforgeeks.org/problems/lru-cache/1
 https://youtu.be/81h8O-0U5oo
 '''
+Approach1 
+
+
+# design the class in the most optimal way
+class DDL:
+    def __init__(self,key,value):
+        self.key = key
+        self.value = value
+        self.prev = None
+        self.next = None
+class LRUCache:
+      
+    #Constructor for initializing the cache capacity with the given value.  
+    def __init__(self,cap):
+        self.cap = cap
+        self.mapp = {}
+        self.head = DDL(0,0)
+        self.tail = DDL(0,0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        self.size = 0
+        
+    def delete(self,node):
+        node.next.prev = node.prev
+        node.prev.next = node.next
+    def add_to_head(self,node):
+        node.next = self.head.next
+        node.prev = self.head
+        self.head.next.prev = node
+        self.head.next = node
+        
+    #Function to return value corresponding to the key.
+    def get(self, key):
+        if key in self.mapp:
+            node = self.mapp[key]
+            value = node.value
+            self.delete(node)
+            self.add_to_head(node)
+            return value
+        return -1
+        
+        
+    #Function for storing key-value pair.   
+    def set(self, key, value):
+        if key in self.mapp:
+            node = self.mapp[key]
+            self.delete(node)
+        elif self.size ==self.cap:
+            del self.mapp[self.tail.prev.key]
+            self.delete(self.tail.prev)
+        else:
+            self.size+=1
+        node = DDL(key,value)
+        self.add_to_head(node)
+        self.mapp[key] =node
+
+
+
+
+
+
+Approach 2
+========================================
 # passing all 
 # the cpp version is also passing all test case
 from collections import OrderedDict
@@ -36,7 +99,7 @@ class LRUCache:
 
 
 ===========================================
-# python given time limit in gfg
+# python given time limit in gfg but leetcode passing all
 from collections import deque
 class LRUCache:
       
@@ -71,6 +134,7 @@ class LRUCache:
 
 
 
+# cpp passing all : codestory with mik
 ==============
 class LRUCache
 {
@@ -123,6 +187,9 @@ class LRUCache
         }
     }
 };
+
+# code story with mik
+# limit limit
 # Brute Force
 class LRUCache
 {
@@ -176,6 +243,8 @@ class LRUCache
 
 
 # python
+# time limit
+# Brute Forece.
 ======================
 
 class LRUCache:
