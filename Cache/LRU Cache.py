@@ -1,4 +1,58 @@
+'''
+https://www.geeksforgeeks.org/problems/lru-cache/1
+https://youtu.be/81h8O-0U5oo
+'''
+class LRUCache
+{
+    private:
 
+    public:
+    list<int> dll;
+    map<int,pair<list<int>::iterator,int>>mp;
+    int n;
+    //Constructor for initializing the cache capacity with the given value.
+    LRUCache(int cap)
+    {
+       n=cap;
+        // code here
+    }
+    
+    void makerecentUsed(int key){
+        dll.erase(mp[key].first);
+        dll.push_front(key);
+        mp[key].first = dll.begin();
+    }
+    int GET(int key)
+    {
+        if(mp.find(key)==mp.end()){
+            return -1;
+        }
+        makerecentUsed(key);
+        return mp[key].second;
+    }
+    
+    //Function for storing key-value pair.
+    void SET(int key, int value)
+    {
+        if(mp.find(key)!=mp.end()){
+            mp[key].second = value;
+            makerecentUsed(key);
+            
+        } 
+        else{
+            dll.push_front(key);
+            mp[key]={dll.begin(),value};
+            n--;
+        }
+        if(n<0){
+            int key_del = dll.back();
+            mp.erase(key_del);
+            dll.pop_back();
+            n++;
+
+        }
+    }
+};
 # Brute Force
 class LRUCache
 {
