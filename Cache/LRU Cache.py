@@ -2,6 +2,43 @@
 https://www.geeksforgeeks.org/problems/lru-cache/1
 https://youtu.be/81h8O-0U5oo
 '''
+
+# python given time limit in gfg
+from collections import deque
+class LRUCache:
+      
+    #Constructor for initializing the cache capacity with the given value.  
+    def __init__(self,cap):
+        self.dll = deque()
+        self.cache = {}
+        self.capacity = cap
+    #Function to return value corresponding to the key.
+    def makerentlyUsed(self,key):
+        self.dll.remove(key)
+        self.dll.appendleft(key)
+    def get(self, key):
+        if key not in self.cache:
+            return -1
+        self.makerentlyUsed(key)
+        return self.cache[key]
+        
+    #Function for storing key-value pair.   
+    def set(self, key, value):
+        if key in self.cache:
+            self.cache[key]=value
+            self.makerentlyUsed(key)
+        else:
+            self.dll.appendleft(key)
+            self.cache[key]=value
+            self.capacity -=1
+        if self.capacity<0:
+            del self.cache[self.dll.pop()]
+            self.capacity +=1
+            
+
+
+
+==============
 class LRUCache
 {
     private:
