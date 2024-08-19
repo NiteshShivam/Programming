@@ -1,6 +1,27 @@
 '''
 https://www.geeksforgeeks.org/problems/kth-smallest-element5635/1
 '''
+
+
+class Solution:
+
+    def kthSmallest(self, arr,k):
+        max_element = max(arr)
+        n = len(arr)
+        
+        freq = [0]*(max_element+1)
+        for i in range(n):
+            freq[arr[i]]+=1
+        count = 0
+        for i in range(max_element+1):
+            if freq[i]!=0:
+                count+=freq[i]
+                if count>=k:
+                    return i
+        return -1
+
+
+=======================
 import heapq
 class Solution:
 
