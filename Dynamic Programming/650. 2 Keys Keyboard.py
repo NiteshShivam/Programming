@@ -26,6 +26,36 @@ class Solution:
 
 
 
+
+===============================
+class Solution:
+    def minSteps(self, n: int) -> int:
+        if n==1:
+            return 0
+        if n==2:
+            return 2
+        dp = [0]*(n+1)
+        dp[1]=0
+        dp[2]=2
+        for i in range(3,n+1):
+            factor = i//2
+            while factor>=1:
+                if i%factor==0:
+                    copy = 1
+                    result = i//factor-1
+                    dp[i] = dp[factor]+copy+result
+                    break
+                else:
+                    factor-=1
+        return dp[n]
+
+
+
+
+
+
+
+
 ===========================
 class Solution:
     def solve(self,n,count,clip):
