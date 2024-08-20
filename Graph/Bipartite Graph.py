@@ -1,5 +1,8 @@
 '''
-Given an adjacency list of a graph adj of V no. of vertices having 0 based index. Check whether the graph is bipartite or not.
+https://leetcode.com/problems/is-graph-bipartite/description/
+
+Given an adjacency list of a graph adj of V no. of vertices having 0 based index.
+Check whether the graph is bipartite or not.
 Leetcode :
 785. Is Graph Bipartite?
 '''
