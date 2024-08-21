@@ -42,3 +42,6 @@ class Solution:
         space.sort()
         result = []
         for each in space:
+            result.append(nums[each[1]])
+        return result
+
