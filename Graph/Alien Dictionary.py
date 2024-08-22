@@ -49,5 +49,59 @@ class Solution:
                     break
         # print(adj)
         return self.toposort(adj,k)
-        
+
+
+# cpp
+=================================
+class Solution{
+    public:
+    string toposort(unordered_map<char,vector<char>>& adj,int k){
+        string result="";
+        vector<int> indegree(k,0);
+        for(int i=0;i<k;i++){
+            char current_char = 'a'+i;
+            if (adj.find(current_char)!=adj.end()){
+                for(char v:adj[current_char]){
+                    indegree[v-'a']++;
+                }
+            }
+        }
+        queue<int> q;
+        for(int i=0;i<k;i++){
+            if(indegree[i]==0){
+                q.push(i);
+            }
+        }
+        while(!q.empty()){
+            int current_value = q.front();
+            q.pop();
+            char current_char = current_value+'a';
+            result.push_back(current_char);
+            if (adj.find(current_char)!=adj.end()){
+                for(char v:adj[current_char]){
+                    indegree[v-'a']--;
+                    if(indegree[v-'a']==0){
+                        q.push(v-'a');
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    string findOrder(string dict[], int N, int K) {
+        unordered_map<char,vector<char>> adj;
+        for(int i=0;i<N-1;i++){
+            string s1 = dict[i];
+            string s2 = dict[i+1];
+            int mlen=min(s1.size(),s2.size());
+            for(int j=0;j<mlen;j++){
+                if(s1[j]!=s2[j]){
+                    adj[s1[j]].push_back(s2[j]);
+                    break;
+                }
+            }
+        }
+        return toposort(adj,K);
+    }
+};
         
