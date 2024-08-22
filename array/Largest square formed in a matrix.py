@@ -2,6 +2,7 @@
 Given a binary matrix mat of size n * m, 
 find out the maximum length of a side of a square sub-matrix with all 1s.
 
+https://www.geeksforgeeks.org/problems/largest-square-formed-in-a-matrix0806/1
 https://www.youtube.com/watch?v=MMr19RE7KYY
 '''
 
