@@ -4,6 +4,27 @@ https://www.geeksforgeeks.org/problems/stickler-theif-1587115621/1
 https://youtu.be/SI6Pm8AKqnQ
 '''
 
+# python
+class Solution:  
+    
+    #Function to find the maximum money the thief can get.
+    
+    def FindMaxSum(self,arr, n):
+        t = [0]*(n+1)
+        for i in range(n):
+            first = 0
+            second = 0
+            if i-2>=0:
+                first=t[i-2]
+            if i-1>=0:
+                second = t[i-1]
+            t[i] = max(arr[i]+first,second)
+        
+        return t[n-1];
+
+
+
+===============
 # cpp
 class Solution
 {
