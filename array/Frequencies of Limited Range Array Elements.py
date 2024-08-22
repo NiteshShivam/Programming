@@ -1,3 +1,7 @@
+'''
+https://www.geeksforgeeks.org/problems/frequency-of-array-elements-1587115620/1
+'''
+
 '''Given an array arr[] of n positive integers which can contain integers from 1 to p
 where elements can be repeated or can be absent from the array.
 Your task is to count the frequency of all numbers from 1 to n.
