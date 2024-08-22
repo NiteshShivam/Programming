@@ -1,5 +1,7 @@
 '''
 https://www.geeksforgeeks.org/problems/frequency-of-array-elements-1587115620/1
+
+https://youtu.be/B2hI-QPoisk
 '''
 
 '''Given an array arr[] of n positive integers which can contain integers from 1 to p
