@@ -11,3 +11,25 @@ class Solution:
             else:
                 result+='0'
         return int(result,2)
+
+# nice way
+=======================
+class Solution:
+    def findComplement(self, num: int) -> int:
+        n = 0
+        while n < num:
+            n = (n << 1) | 1
+        return n - num
+
+# c++
+=====================
+class Solution {
+public:
+    int findComplement(int num) {
+     int n=0;
+     while(n<num){
+        n = (n<<1)|1;
+     }   
+     return n-num;
+    }
+};
