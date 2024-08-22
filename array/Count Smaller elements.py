@@ -119,3 +119,51 @@ class Solution:
 		    sorted_arr.insert(index,val)
 		return result
 
+
+===========================
+class Solution:
+    def merge(self,left,mid,right,arr,count):
+        n = right-left+1
+        temp = [None]*n
+        i = left
+        j = mid+1
+        k = 0
+        while i<=mid and j<=right:
+            if arr[i][0]<=arr[j][0]:
+                temp[k] = arr[j]
+                k+=1
+                j+=1
+            else:
+                count[arr[i][1]] +=right-j+1
+                temp[k] = arr[i]
+                k+=1
+                i+=1
+            
+        while i<=mid:
+            temp[k] = arr[i]
+            k+=1
+            i+=1
+        while j<=right:
+            temp[k] = arr[j]
+            k+=1
+            j+=1
+            
+        for i in range(n):
+            arr[left+i]=temp[i]
+    def mergeSort(self,start,end,arr,count):
+        if start<end:
+            mid = start+(end-start)//2
+            self.mergeSort(start,mid,arr,count)
+            self.mergeSort(mid+1,end,arr,count)
+            self.merge(start,mid,end,arr,count)
+    def constructLowerArray(self,a):
+        length = len(a)
+        v = []
+        for i in range(length):
+            v.append((a[i],i))
+        count = [0]*length
+        self.mergeSort(0,length-1,v,count)
+        return count
+
+
+
