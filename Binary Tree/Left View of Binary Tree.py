@@ -21,4 +21,33 @@ def LeftView(root):
                 q.append(temp.right)
             length-=1
     return result
-        
+
+
+# cpp
+==========================
+vector<int> leftView(Node *root)
+{
+    vector<int> result;
+    queue<Node*> q;
+    q.push(root);
+    while(!q.empty()){
+        int length = q.size();
+        int flag=1;
+        while(length--){
+            Node* temp = q.front();
+            q.pop();
+            if(flag){
+                flag= !flag;
+                result.push_back(temp->data);
+            }
+            if(temp->left){
+                q.push(temp->left);
+            }
+            if(temp->right){
+                q.push(temp->right);
+            }
+        }
+        // return 
+    }
+    return result;
+}
