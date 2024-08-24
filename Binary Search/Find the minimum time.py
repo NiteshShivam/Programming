@@ -8,6 +8,7 @@ class Solution:
         end = min(S1*N,S2*N)
         ans =0
         def possible(s1,s2,n,mid):
+             # Calculate the number of documents each scanner can process in 'mid' time
             if mid//s1 +mid//s2>=n:
                 return True
             return False
