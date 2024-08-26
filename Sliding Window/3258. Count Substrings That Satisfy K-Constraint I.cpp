@@ -4,6 +4,36 @@ mik->
 https://youtu.be/2d1ALG8wwDc
 
   */
+// Brute Force
+
+class Solution {
+public:
+    int countKConstraintSubstrings(string s, int k) {
+        int length = s.size();
+        int result =0;
+        for(int i=0;i<length;i++){
+            int zero=0;
+            int one =0;
+            for(int j=i;j<length;j++){
+                if(s[j]=='0'){
+                    zero+=1;
+                }
+                else{
+                    one++;
+                }
+                if(zero<=k || one<=k){
+                    result+=1;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+};
+
+=============================================
 class Solution {
 public:
     int countKConstraintSubstrings(string s, int k) {
