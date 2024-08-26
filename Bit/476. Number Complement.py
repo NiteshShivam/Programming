@@ -37,8 +37,9 @@ public:
     }
 };
 
-
+# mik concepts start here
 # cpp
+# time O(log2(num))
 =======================
 class Solution {
 public:
@@ -51,3 +52,33 @@ public:
     }
 };
 
+===============================
+class Solution {
+public:
+    int findComplement(int num) {
+        int numb_bits = int(log2(num))+1;
+        # 1U = 1 is unsigned.
+        unsigned int mask_bits = (1U<<numb_bits)-1; 
+        return mask_bits^num;
+    }
+};
+
+
+
+===================================
+class Solution {
+public:
+    int findComplement(int num) {
+        int i=0;
+        int complement = 0;
+        while(num){
+            if(!(num&1)){
+                complement = complement| (1<<i);
+
+            }
+            num=num>>1;
+            i+=1;
+        }
+        return complement;
+    }
+};
