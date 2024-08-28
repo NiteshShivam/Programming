@@ -164,3 +164,51 @@ class Solution:
         
         return count
 
+
+    =====================================================
+    class Solution {
+public:
+    bool checkIsSubIsland(vector<vector<int>>& grid1,vector<vector<int>>& grid2,int i,int j){
+        int m = grid1.size();
+        int n = grid1[0].size();
+        bool result=true;
+        queue<pair<int,int>> q;
+        q.push({i,j});
+        vector<pair<int,int>> direction = {{0,1},{0,-1},{-1,0},{1,0}};
+        grid2[i][j]=0;
+        while(!q.empty()){
+            auto[x,y]=q.front();
+            q.pop();
+            
+            if(grid1[x][y]!=1){
+                result = false;
+            }
+            for(int k=0;k<4;k++){
+                int new_i = x+ direction[k].first;
+                int new_j = y+direction[k].second;
+                if(new_i>=0 && new_i<m && new_j>=0 && new_j<n && grid2[new_i][new_j]==1){
+                    q.push({new_i,new_j});
+                    grid2[new_i][new_j]=0;
+
+                   
+                }
+            }
+        }
+        return result;
+    }
+    int countSubIslands(vector<vector<int>>& grid1, vector<vector<int>>& grid2) {
+        int m = grid2.size();
+        int n = grid2[0].size();
+        int substring=0;
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++){
+                if(grid2[i][j]==1 && checkIsSubIsland(grid1,grid2,i,j)){
+                    substring++;
+                }
+            }
+        }
+        return substring;
+    }
+};
+
