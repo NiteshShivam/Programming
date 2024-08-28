@@ -121,3 +121,46 @@ class Solution:
                     count += 1
         
         return count
+
+
+
+
+
+
+
+// bfs python
+====================================================
+from typing import List
+from collections import deque
+class Solution:
+    
+    def checkIsSubIsland(self, grid1: List[List[int]], grid2: List[List[int]], i: int, j: int) -> bool:
+        q = deque()
+        q.append((i,j))
+        m = len(grid1)
+        n = len(grid1[0])
+        direction = [(-1,0),(0,1),(0,-1),(1,0)]
+
+        while q:
+            t =q.popleft()
+            grid2[t[0]][t[1]]=0
+            result =  grid1[t[0]][t[1]]==1
+            for each in direction:
+                new_i = t[0]+each[0]
+                new_j = t[1]+each[1]
+                if 0<=new_i<m and 0<=new_j<n and grid2[new_i][new_j]==1:
+                    result = result & self.checkIsSubIsland(grid1,grid2,new_i,new_j)
+            return result
+    def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
+        m = len(grid2)
+        n = len(grid2[0])
+        count = 0
+        
+        for i in range(m):
+            for j in range(n):
+               
+                if grid2[i][j] == 1 and self.checkIsSubIsland(grid1, grid2, i, j):
+                    count += 1
+        
+        return count
+
