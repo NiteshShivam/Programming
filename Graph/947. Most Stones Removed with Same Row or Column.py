@@ -95,3 +95,68 @@ class Solution:
             if self.parent[i]==i:
                 group+=1
         return self.length-group
+
+
+
+
+
+
+
+# cpp
+===========================================
+
+class Solution {
+public:
+    vector<int>parent;
+    vector<int>rank;
+    int n;
+    int find(int i){
+        if(i==parent[i]){
+            return i;
+        }
+        parent[i] = find(parent[i]);
+        return parent[i];
+    }
+    void Union(int x,int y){
+        int parentx = find(x);
+        int parenty = find(y);
+        if(parentx==parenty){
+            return;
+        }
+        if(rank[parentx]>rank[parenty]){
+            parent[parenty]=parentx;
+        }
+        else if(rank[parentx]<rank[parenty]){
+            parent[parenty]=parentx;
+        }
+        else{
+            rank[parenty] += 1;
+            parent[parentx]=parenty;
+        }
+    }
+    int removeStones(vector<vector<int>>& stones) {
+        n = stones.size();
+        parent.resize(n);
+        rank.resize(n);
+        for(int i=0;i<n;i++){
+            parent[i]=i;
+            rank[i]=1;
+        }
+        int group=0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(stones[i][0]==stones[j][0] || stones[i][1]==stones[j][1])
+                {Union(i,j);
+                
+                }
+            }
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(parent[i]==i){
+                group++;
+            }
+        }
+        return n-group;
+    }
+};
