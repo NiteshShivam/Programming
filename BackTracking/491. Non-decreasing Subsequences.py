@@ -23,3 +23,34 @@ class Solution:
         self.length = len(nums)
         self.solve(0,[])
         return self.result
+
+
+# cpp
+==============================
+
+class Solution {
+public:
+    int n;
+    void solve(int index,vector<int>&curr,vector<vector<int>>&result,vector<int>& nums){
+        if(curr.size()>=2){
+            result.push_back(curr);
+        }
+        unordered_set<int> st;
+        for(int i=index;i<n;i++){
+            if((curr.size()==0 or curr.back()<=nums[i]) && st.find(nums[i])==st.end()){
+                curr.push_back(nums[i]);
+                solve(i+1,curr,result,nums);
+                st.insert(nums[i]);
+                curr.pop_back();
+            }
+        }
+    }
+
+    vector<vector<int>> findSubsequences(vector<int>& nums) {
+    n = nums.size();
+    vector<int>curr;
+    vector<vector<int>> result;
+    solve(0,curr,result,nums);
+    return result;
+    }
+};
