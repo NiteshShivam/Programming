@@ -64,3 +64,52 @@ public:
         return result; 
     }
 };
+
+
+
+// python
+============================================
+
+ class Trie:
+    def __init__(self,idx):
+        self.idx = idx
+        self.children = [None]*26
+
+class Solution:
+    def getNode(self,i):
+        return Trie(i)
+    def insert(self,root,i,wordsContainer):
+        word = wordsContainer[i]
+        n = len(word)
+        for j in range(n-1,-1,-1):
+            ch_idx = ord(word[j])-ord('a')
+            if root.children[ch_idx] is None:
+                root.children[ch_idx]=self.getNode(i)
+            root = root.children[ch_idx]
+            if len(wordsContainer[root.idx])>n:
+                root.idx=i
+    def search(self,root,word):
+        result_idx = root.idx
+        n = len(word)
+        for i in range(n-1,-1,-1):
+            ch_idx = ord(word[i]) - ord('a')
+            root = root.children[ch_idx]
+            if root is None:
+                return result_idx
+            result_idx = root.idx
+
+        return result_idx
+    def stringIndices(self, wordsContainer: List[str], wordsQuery: List[str]) -> List[int]:
+        root = Trie(0)
+
+       
+        m = len(wordsContainer)
+        n = len(wordsQuery)
+        result = [0]*n
+        for i in range(m):
+            if(len(wordsContainer[i])<len(wordsContainer[root.idx])):
+                root.idx = i
+            self.insert(root,i,wordsContainer)
+        for i in range(n):
+            result[i] = self.search(root,wordsQuery[i])
+        return result
