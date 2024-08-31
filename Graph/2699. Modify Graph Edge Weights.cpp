@@ -69,3 +69,50 @@ public:
         return edges;
     }
 };
+
+// python 
+// time limit exceed
+=============================================
+
+ class Solution:
+    def Dijkstra(self,edges,n,source,destination):
+        adj = defaultdict(list)
+        for each in edges:
+            u = each[0]
+            v = each[1]
+            w = each[2]
+            if w!=-1:
+                adj[u].append((w,v))
+                adj[v].append((w,u))
+        result = [float('inf')]*n
+        result[source]=0
+        pq = [(0,source)]
+        while pq:
+            cDist,cNode = heapq.heappop(pq)
+            for each in adj[cNode]:
+                if each[0]+cDist<result[each[1]]:
+                    result[each[1]]=each[0]+cDist
+                    heapq.heappush(pq,(result[each[1]],each[1]))
+                    
+        return result[destination]
+
+
+    def modifiedGraphEdges(self, n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
+        large_value = 2e9
+        currDist = self.Dijkstra(edges,n,source,destination)
+        if currDist<target:
+            return []
+        match=False
+        if currDist==target:
+            match=True
+        for each in edges:
+            if each[2]==-1:
+                each[2] = large_value if match else 1
+            if not match:
+                newShort = self.Dijkstra(edges,n,source,destination)
+                if newShort<=target:
+                    each[2]+=target-newShort
+                    match=True
+        if not match:
+            return []
+        return edges
