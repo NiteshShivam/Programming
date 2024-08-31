@@ -49,8 +49,58 @@ public:
     }
 };
 
+// bottom up O(n^2)
+==============================
+
+class Solution {
+public:
+    int minCut(string s) {
+        int n  = s.length();
+        vector<int>f(n,0);
+
+        // check palindrome table
+        vector<vector<bool>> p(n,vector<bool>(n,false));
+
+        // 1 length string
+        for(int i=0;i<n;i++){
+            p[i][i]=true;
+        }
+
+        for(int L=2;L<=n;L++){
+            for(int i=0;i<n-L+1;i++){
+                int j = i+L-1;
+                if(L==2){
+                    p[i][j]=(s[i]==s[j]);
+                }
+                else{
+                    p[i][j] = (s[i]==s[j])&&(p[i+1][j-1]);
+                }
+            }
+        }
+        vector<int> dp(n);
+        for(int i=0;i<n;i++)
+        {
+            if(p[0][i]==true){
+                dp[i]=0;
+            }
+            else{
+                dp[i]=INT_MAX;
+                for(int k=0;k<i;k++){
+                    if(p[k+1][i] && 1+dp[k]<dp[i]){
+                        dp[i]=1+dp[k];
+                    }
+                }
+            }
+
+        }
+        return dp[n-1];
+
+    }
+};
 
 
+
+ 
 ==========================
 
 // giving time limit
