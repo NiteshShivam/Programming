@@ -5,6 +5,54 @@ https://youtu.be/XSe1_koFPzo
 
   */
 
+// passing all test case.
+class Solution {
+public:
+    vector<int> dp;
+    bool palindrome(string& s,int start,int end){
+        int i=start;
+        int j = end;
+        while(i<=j){
+            if(s[i]==s[j]){
+                i++;
+                j--;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+
+    }
+    int solve(string& s,int start,vector<int>& dp){
+        if(start==s.size() || palindrome(s,start,s.size()-1)){
+            return 0;
+        }
+       
+        if(dp[start]!=INT_MAX){
+            return dp[start];
+        }
+        int min_cut=INT_MAX;
+        for(int end=start;end<s.size();end++){
+            if(palindrome(s,start,end)){
+                int result = 1+solve(s,end+1,dp);
+                min_cut = min(min_cut,result);
+            }
+        }
+        return dp[start]=min_cut;
+    }
+    
+    int minCut(string s) {
+        int length = s.size();
+        dp.resize(length,INT_MAX);
+        return solve(s,0,dp);
+    }
+};
+
+
+
+==========================
+
 // giving time limit
 class Solution {
 public:
