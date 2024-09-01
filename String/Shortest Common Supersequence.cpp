@@ -31,3 +31,33 @@ class Solution
         return solve(X,Y,0,0);
     }
 };
+
+
+
+
+=========================================================
+ class Solution
+{
+    public:
+    vector<vector<int>>dp;
+    int solve(string& s1,string& s2,int m,int n){
+        if(m==0 || n==0){
+            return m+n;
+        }
+        if(dp[m][n]!=-1){
+            return dp[m][n];
+        }
+        if(s1[m-1]==s2[n-1]){
+            return dp[m][n] = 1+solve(s1,s2,m-1,n-1);}
+        else{
+            return dp[m][n] =1 + min(solve(s1,s2,m-1,n),solve(s1,s2,m,n-1));
+        }
+        }
+    
+    int shortestCommonSupersequence(string X, string Y, int m, int n)
+    {
+        // memset(dp,-1,sizeof(dp));
+        dp.resize(m+1,vector<int>(n+1,-1));
+        return solve(X,Y,m,n);
+    }
+};
