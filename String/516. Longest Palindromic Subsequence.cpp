@@ -2,6 +2,8 @@
 https://leetcode.com/problems/longest-palindromic-subsequence/
 mik-video:
 https://youtu.be/M4pfB3G-YQc
+mik-
+https://youtu.be/WIhQ5NOzCKM?list=PLpIkg8OmuX-JhFpkhgrAwZRtukO0SkwAt
   */
 class Solution {
 public:
@@ -86,6 +88,38 @@ public:
         string s2 = s;
         reverse(s2.begin(),s2.end());
         return LCS(s,s2,m,m);
+        
+    }   
+};
+
+
+
+
+// using blueprint -second video above
+=================================
+
+
+ class Solution {
+public:
+    
+    int longestPalindromeSubseq(string s) {
+        int n = s.length();
+        vector<vector<int>>t(n,vector<int>(n));
+        for(int L=1;L<=n;L++){
+            for(int i=0;i+L-1<n;i++){
+                int j = i+L-1;
+                if(i==j){
+                    t[i][j]=1;
+                }
+                else if(s[i]==s[j]){
+                    t[i][j] = 2+t[i+1][j-1];
+                }
+                else{
+                    t[i][j] = max(t[i+1][j],t[i][j-1]);
+                }
+            }
+        }
+        return t[0][n-1];
         
     }   
 };
