@@ -1,3 +1,8 @@
+'''
+https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
+mik-video:
+https://youtu.be/UrQv5YMC060?list=PLpIkg8OmuX-LZB9jYzbbZchk277H5CbdY
+'''
 from typing import List
 from collections import deque
 class Solution:
@@ -48,3 +53,41 @@ class Solution:
 		        return True
 		return False
 
+
+
+# cpp dfs
+=================================
+
+class Solution {
+  public:
+    bool dfs(vector<int> adj[],int u,int parent,vector<bool>& visited){
+        visited[u]=true;
+        
+        for(auto &v:adj[u]){
+            if(v==parent)
+            continue;
+            if(visited[v]==true){
+                return true;
+            }
+            if(dfs(adj,v,u,visited))
+            {
+                return true;
+            }
+        }
+        return false;
+        
+    }
+    bool isCycle(int V, vector<int> adj[]) {
+        vector<bool>visited(V,false);
+        for(int i=0;i<V;i++){
+            if(visited[i]==0)
+            {
+                if(dfs(adj,i,-1,visited))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
