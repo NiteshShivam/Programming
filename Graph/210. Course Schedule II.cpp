@@ -1,7 +1,11 @@
 /*
 https://leetcode.com/problems/course-schedule-ii/description/
 mik-video:
+
 https://youtu.be/W1WhSN9wAw0?list=PLpIkg8OmuX-LZB9jYzbbZchk277H5CbdY
+
+// dfs
+https://youtu.be/yiR95dxinjs?list=PLpIkg8OmuX-LZB9jYzbbZchk277H5CbdY
   */
 class Solution {
 public:
@@ -45,5 +49,57 @@ public:
         }
         return result;
         
+    }
+};
+
+
+
+// dfs
+=================================================
+ class Solution {
+public:
+    bool checkDfs(unordered_map<int,vector<int>>& adj,int i,vector<bool> &inStack,vector<bool> &visited,stack<int>&s){
+        visited[i]=true;
+        inStack[i] =true;
+        for(auto &v:adj[i]){
+            if(visited[v]==false && checkDfs(adj,v,inStack,visited,s)){
+                return true;
+            }
+            if(inStack[v]==true){
+                return true;
+            }
+        }
+        s.push(i);
+        inStack[i]=false;
+       return false;
+    }
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        unordered_map<int,vector<int>> adj;
+     vector<bool> inStack(numCourses,false);
+     vector<bool> visited(numCourses,false);
+     for(int i=0;i<prerequisites.size();i++){
+        int a = prerequisites[i][0];
+        int b = prerequisites[i][1];
+        adj[b].push_back(a);
+    }
+    stack<int> s;
+    bool flag=false;
+    for(int i=0;i<numCourses;i++){
+        if(!visited[i] && checkDfs(adj,i,inStack,visited,s)){
+           flag=true;
+           break;
+        }
+    }
+    if(flag){
+        return {};
+    }
+      
+    vector<int> r;
+    while(s.size()>0){
+        int t = s.top();
+        r.push_back(t);
+        s.pop();
+    }
+    return r;
     }
 };
