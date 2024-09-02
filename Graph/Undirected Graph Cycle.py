@@ -2,6 +2,9 @@
 https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
 mik-video:
 https://youtu.be/UrQv5YMC060?list=PLpIkg8OmuX-LZB9jYzbbZchk277H5CbdY
+
+# using bfs
+https://youtu.be/UrQv5YMC060?list=PLpIkg8OmuX-LZB9jYzbbZchk277H5CbdY
 '''
 from typing import List
 from collections import deque
@@ -86,6 +89,48 @@ class Solution {
                 {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+};
+
+
+
+# bfs
+==================================
+class Solution {
+  public:
+    bool isCycle(vector<int> adj[],int i,vector<bool>& visited){
+        queue<pair<int,int>> q;
+        q.push({i,-1});
+        visited[i]=true;
+        while(!q.empty()){
+            pair<int,int>P =q.front();
+            q.pop();
+            int parent = P.second;
+            int u = P.first;
+            for(int &v:adj[u]){
+                if(v==parent){
+                    continue;
+                }
+                if(visited[v]==false){
+                    visited[v]=true;
+                    q.push({v,u});
+                }
+                else{
+                    return true;
+                }
+            }
+        }
+        return false;
+    
+    }
+    bool isCycle(int V, vector<int> adj[]) {
+         vector<bool> visited(V,false);
+        for(int i=0;i<V;i++){
+            if(visited[i]==false && isCycle(adj,i,visited)){
+                return true;
             }
         }
         return false;
