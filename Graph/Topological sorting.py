@@ -37,7 +37,10 @@ Approach 2:
     # adj[v] = each
     # each = (v,weight) ,directed graph
     # link : https://github.com/NiteshShivam/Programming/blob/main/Graph/Shortest%20path%20in%20Directed%20Acyclic%20Graph.py
+    # striver
     # https://www.youtube.com/watch?v=ZUFQfFaU-8U
+    # mik
+    # https://youtu.be/WbbYZRr4arw?list=PLpIkg8OmuX-LZB9jYzbbZchk277H5CbdY
     def topoSortDFS(self,V,adj):
         stack = []
         visited = [False]*V
@@ -55,3 +58,42 @@ Approach 2:
         while stack:
             result.append(stack.pop())
         return result
+
+
+# cpp
+# using dfs
+# mik 
+# https://youtu.be/WbbYZRr4arw?list=PLpIkg8OmuX-LZB9jYzbbZchk277H5CbdY
+============================================
+
+class Solution
+{
+	public:
+	
+	void dfs(int i,vector<int> adj[],vector<bool>& visited,stack<int>& s){
+	    visited[i]=true;
+	    for(int &v:adj[i]){
+	        if(visited[v]==false)
+	        dfs(v,adj,visited,s);
+	    }
+	    s.push(i);
+	}
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    vector<bool>visited(V,false);
+	    stack<int> s;
+	    for(int i=0;i<V;i++){
+	        if(visited[i]==false)
+	        {
+	            dfs(i,adj,visited,s);
+	        }
+	    }
+	    vector<int> result;
+	    while(!s.empty()){
+	        int t = s.top();
+	        result.push_back(t);
+	        s.pop();
+	    }
+	    return result;
+	}
+};
