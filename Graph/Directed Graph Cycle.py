@@ -25,3 +25,37 @@ class Solution:
             if visited[i]==0 and dfs(i):
                 return True
         return False
+        
+
+
+
+
+# cpp
+==========================
+class Solution {
+  public:
+    bool dfs(int u,vector<int> adj[],vector<bool>& visited,vector<bool>& inStack){
+        visited[u]=true;
+        inStack[u]=true;
+        for(int &v:adj[u]){
+            if(visited[v]==false && dfs(v,adj,visited,inStack)){
+                return true;
+            }
+            else if(inStack[v]==true){
+                return true;
+            }
+        }
+        inStack[u]=false;
+        return false;
+    }
+    bool isCyclic(int V, vector<int> adj[]) {
+       vector<bool>visited(V,false);
+       vector<bool>inStack(V,false);
+       for(int i=0;i<V;i++){
+           if(visited[i]==false && dfs(i,adj,visited,inStack)){
+               return true;
+           }
+       }
+       return false;
+    }
+};
