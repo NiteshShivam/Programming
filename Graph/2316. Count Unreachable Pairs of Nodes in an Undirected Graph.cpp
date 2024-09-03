@@ -1,8 +1,14 @@
 /*
 https://leetcode.com/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/description/
 mik-video:
+dsu
 https://youtu.be/Hh_9ppxgzpo?list=PLpIkg8OmuX-LZB9jYzbbZchk277H5CbdY
+
+dfs-bfs
+https://youtu.be/kOt2VNsU0FE
+
   */
+// using dsu
 class Solution {
 public:
     vector<int> parent;
@@ -53,6 +59,46 @@ public:
             long long size = it.second;
             result+= (size)*(remainingNode-size);
             remainingNode =remainingNode-size;
+        }
+        return result;
+    }
+};
+
+
+// using dfs
+===================================
+ class Solution {
+public:
+    void dfs(unordered_map<int,vector<int>>& adj,int i,long long& size,vector<bool>& visited){
+        visited[i]=true;
+        size++;
+        for(auto &v:adj[i]){
+            if(visited[v]==false){
+                dfs(adj,v,size,visited);
+            }
+        }
+    }
+
+    long long countPairs(int n, vector<vector<int>>& edges) {
+        unordered_map<int,vector<int>> adj;
+        for(auto &vec:edges){
+            int u = vec[0];
+            int v = vec[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        vector<bool> visited(n,false);
+        long long remaining_nodes = n;
+        long long result =0;
+        
+        for(int i=0;i<n;i++){
+            if(visited[i]==false){
+                long long size=0;
+                dfs(adj,i,size,visited);
+                result += size*(remaining_nodes-size);
+                remaining_nodes = remaining_nodes-size;
+                
+            }
         }
         return result;
     }
