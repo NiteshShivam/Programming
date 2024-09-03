@@ -103,3 +103,51 @@ public:
         return result;
     }
 };
+
+
+
+// bfs
+====================================
+ class Solution {
+public:
+    void bfs(unordered_map<int,vector<int>>& adj,int i,long long& size,vector<bool>& visited){
+        queue<int> q;
+        q.push(i);
+        visited[i]=true;
+        while(!q.empty()){
+            int u = q.front();
+            size++;
+            q.pop();
+            for(auto &v:adj[u]){
+                if(visited[v]==false){
+                    visited[v]=true;
+                    q.push(v);
+                }
+            }
+        }
+    }
+
+    long long countPairs(int n, vector<vector<int>>& edges) {
+        unordered_map<int,vector<int>> adj;
+        for(auto &vec:edges){
+            int u = vec[0];
+            int v = vec[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        vector<bool> visited(n,false);
+        long long remaining_nodes = n;
+        long long result =0;
+        
+        for(int i=0;i<n;i++){
+            if(visited[i]==false){
+                long long size=0;
+                bfs(adj,i,size,visited);
+                result += size*(remaining_nodes-size);
+                remaining_nodes = remaining_nodes-size;
+                
+            }
+        }
+        return result;
+    }
+};
