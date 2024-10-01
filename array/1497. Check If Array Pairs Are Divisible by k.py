@@ -4,6 +4,33 @@ https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/descriptio
 mik-video:
 https://youtu.be/Lye_llDcSuI
 '''
+
+c++
+class Solution {
+public:
+    bool canArrange(vector<int>& arr, int k) {
+        vector<int>mp(k,0);
+        for(int &num:arr){
+            int r= ((num%k)+k)%k;
+            
+            mp[r]+=1;
+        }
+        if(mp[0]%2!=0){
+            return false;
+        }
+        for(int i=1;i<=k/2;i++){
+            if(mp[i]!=mp[k-i]){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+
+
+python
+====================================
 class Solution:
     def canArrange(self, arr: List[int], k: int) -> bool:
         length = len(arr)
