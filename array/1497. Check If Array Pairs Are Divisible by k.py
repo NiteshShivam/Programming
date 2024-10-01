@@ -11,7 +11,8 @@ public:
     bool canArrange(vector<int>& arr, int k) {
         vector<int>mp(k,0);
         for(int &num:arr){
-            int r= ((num%k)+k)%k;
+            int r= ((num%k)+k)%k;  // to handle negative remainder
+    
             
             mp[r]+=1;
         }
