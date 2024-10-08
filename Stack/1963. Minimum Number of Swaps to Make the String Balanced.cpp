@@ -31,3 +31,24 @@ public:
     return (r+1)/2;
     }
 };
+
+
+// Approach 2
+
+class Solution {
+public:
+    int minSwaps(string s) {
+        int st=0;
+        for(int i=0;i<s.size();i++){
+            if(s[i]=='['){
+                st++;
+            }
+            else if(st>0){
+                st--;
+            }
+        }
+         return (st+1)/2;
+    }
+   
+    
+};
