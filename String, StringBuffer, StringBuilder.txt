@@ -95,8 +95,8 @@ Whenever we are using new operator compulsory a new object will be created in he
 i.e duplicate objects are possible in the heap area but not in SCP.
 
 String s1 = new String("Durga");
-s1.concad("software");
-String s2 = s1.concad(" Solutions");
+s1.concad("software"); // runtime operation
+String s2 = s1.concad(" Solutions"); 
 s1 = s1.concad("soft");
 
 sopln(s1);	//Durgasoft
