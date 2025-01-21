@@ -34,7 +34,7 @@ String s1 = new String("Durga");			StringBuffer sb1 = new StringBuffer("Durga");
 String s2 = new String("Durga");			StringBuffer sb2 = new StringBuffer("Durga");
   
 sopln(s1 == s2);	//false				sopln(sb1 == sb2);	//false
-sopln(s1.equals(s2));	//true				sopln(sb1 == sb2);	//false
+sopln(s1.equals(s2));	//true				sopln(sb1.equals(sb2));	//false
 
 
 in String class .equals() method			in StringBuffer .equals() method is not overridden
@@ -43,7 +43,8 @@ even though objects are different if			.equals() method got executed which is me
 content is same then .equals() method			comparison(address comparision). Due to this if objects
 returns true.						are different .equals() method returns false even though
 							content is same.
-							
+
+== is always meant for reference(address) comparision. 
 Case 3:
 ________
 
