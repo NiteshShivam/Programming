@@ -6,7 +6,7 @@ case 1 :
 
 String s = new String("Durga ");			StringBuffer sb = new StringBuffer("Durga")
 
-s.concad("software");					sb.append(" software");
+s.concat("software");					sb.append(" software");
 
 sopln(s);	//Durga 				sopln(sb);	// Durga Software
 
