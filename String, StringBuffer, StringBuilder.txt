@@ -25,6 +25,7 @@ nothing but immutability of String
 s-----> Durga
 
 	DurgaSoftware // but nothing to pointing this object
+                    // eligible for garbage collection
 	
 Case 2.
 __________
