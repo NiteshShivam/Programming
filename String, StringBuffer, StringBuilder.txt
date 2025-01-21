@@ -27,7 +27,7 @@ s-----> Durga
 	DurgaSoftware // but nothing to pointing this object
                     // eligible for garbage collection
 	
-Case 2.
+Case 2: == operator vs equals() method
 __________
 
 String s1 = new String("Durga");			StringBuffer sb1 = new StringBuffer("Durga");
