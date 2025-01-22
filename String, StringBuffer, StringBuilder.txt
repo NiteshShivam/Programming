@@ -127,7 +127,7 @@ _____________________________
 
 1. String s = new String();
 
-creates an empty String object 
+creates an empty String object in heap area. 
 
 2. String s = new String(String literal);
 
@@ -145,7 +145,7 @@ char[] ch = {'a','b','c','d'};
 
 String s = new String(ch);
 
-sopln(s);
+sopln(s);// abcd
 
 5. 
 
